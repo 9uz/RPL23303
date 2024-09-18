@@ -1,7 +1,9 @@
 # Modul Praktikum Web Lanjutan: Routing Kompleks dan MVC Lanjutan
 
 ## Capaian Pembelajaran
-[Bagian ini tetap sama]
+1. Mengimplementasikan routing kompleks dalam aplikasi web
+2. Menerapkan pola MVC lanjutan dalam konteks proyek web
+3. Membangun sebuah aplikasi web sederhana dengan fitur CRUD menggunakan routing kompleks dan MVC lanjutan
 
 ## Durasi
 4 jam
