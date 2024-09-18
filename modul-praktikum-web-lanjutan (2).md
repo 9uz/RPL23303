@@ -41,7 +41,10 @@
    ```
 
 ## Outline Materi
-[Bagian ini tetap sama]
+1. Pengenalan Routing Kompleks (30 menit)
+2. Implementasi MVC Lanjutan (45 menit)
+3. Pembuatan Proyek: Aplikasi Manajemen Tugas (2 jam 30 menit)
+4. Pengujian dan Evaluasi (15 menit)
 
 ## Rincian Materi dan Instruksi
 
@@ -164,7 +167,63 @@ Instruksi:
 
 ### 3. Pembuatan Proyek: Aplikasi Manajemen Tugas (2 jam 30 menit)
 
-[Instruksi untuk bagian ini tetap sama, dengan penambahan contoh kode spesifik untuk Laravel]
+#### a. Setup Proyek (15 menit)
+Instruksi:
+1. Inisialisasi proyek baru menggunakan command line tool framework Anda.
+2. Konfigurasikan koneksi database di file konfigurasi.
+3. Buat database baru untuk proyek ini.
+
+#### b. Implementasi Model (30 menit)
+Instruksi:
+1. Buat model `Task` dengan properti: id, title, description, status, due_date, user_id.
+2. Buat model `User` jika belum ada.
+3. Definisikan relasi antara `User` dan `Task` (one-to-many).
+4. Tambahkan query scope di model `Task` untuk memfilter tugas berdasarkan status.
+
+```php
+// Contoh untuk Laravel
+public function scopeStatus($query, $status)
+{
+    return $query->where('status', $status);
+}
+```
+
+#### c. Implementasi Controller (45 menit)
+Instruksi:
+1. Buat `TaskController` menggunakan perintah artisan (Laravel) atau secara manual (Express.js).
+2. Implementasikan metode CRUD:
+   - index: Menampilkan semua tugas
+   - create: Menampilkan form pembuatan tugas
+   - store: Menyimpan tugas baru
+   - show: Menampilkan detail tugas
+   - edit: Menampilkan form edit tugas
+   - update: Memperbarui tugas
+   - destroy: Menghapus tugas
+3. Gunakan model `Task` dalam setiap metode controller.
+
+#### d. Implementasi Routing (30 menit)
+Instruksi:
+1. Buka file routing utama (web.php untuk Laravel atau app.js untuk Express.js).
+2. Definisikan route untuk setiap aksi CRUD `Task`.
+3. Implementasikan route group untuk mengelompokkan semua route terkait `Task`.
+4. Tambahkan middleware 'auth' ke grup route `Task`.
+
+```php
+// Contoh untuk Laravel
+Route::middleware(['auth'])->group(function () {
+    Route::resource('tasks', TaskController::class);
+});
+```
+
+#### e. Implementasi View (30 menit)
+Instruksi:
+1. Buat layout utama (`main.blade.php` untuk Laravel atau `layout.ejs` untuk Express.js).
+2. Buat view untuk setiap aksi CRUD:
+   - `index.blade.php`: List semua tugas
+   - `create.blade.php`: Form pembuatan tugas
+   - `show.blade.php`: Detail tugas
+   - `edit.blade.php`: Form edit tugas
+3. Gunakan partial view untuk bagian yang berulang, seperti form tugas.
 
 ### 4. Pengujian dan Evaluasi (15 menit)
 
@@ -175,11 +234,18 @@ Instruksi:
    ```
 2. Buka browser dan akses `http://localhost:8000`
 3. Uji setiap fungsi CRUD yang telah dibuat
-4. Pastikan routing berfungsi dengan benar, coba akses route dengan parameter dan route grup
-5. Verifikasi bahwa pola MVC diimplementasikan dengan benar, periksa interaksi antara Model, View, dan Controller
+   - Buat tugas baru
+   - Lihat daftar tugas
+   - Lihat detail tugas
+   - Edit tugas
+   - Hapus tugas
+5. Pastikan routing berfungsi dengan benar, coba akses route dengan parameter dan route grup
+6. Verifikasi bahwa pola MVC diimplementasikan dengan benar, periksa interaksi antara Model, View, dan Controller
 
 ## Tugas
-[Bagian ini tetap sama]
+1. Tambahkan fitur kategori untuk Task dan implementasikan routing nested untuk menampilkan Task berdasarkan kategori.
+2. Implementasikan middleware untuk memastikan hanya pemilik Task yang dapat mengedit atau menghapus Task tersebut.
+3. Buat custom 404 page untuk route yang tidak ditemukan.
 
 ## Referensi
 - [Dokumentasi Resmi Laravel](https://laravel.com/docs)
@@ -188,5 +254,8 @@ Instruksi:
 - "Advanced Web Application Architecture" oleh Matthias Noback
 
 ## Penilaian
-[Bagian ini tetap sama]
+- Implementasi routing kompleks: 30%
+- Penerapan pola MVC lanjutan: 30%
+- Fungsionalitas aplikasi: 25%
+- Kerapian kode dan struktur proyek: 15%
 
