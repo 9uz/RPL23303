@@ -92,11 +92,16 @@ Modul ini bertujuan untuk memberikan pemahaman dan pengalaman praktis dalam mana
    ```
 
 5. Salin file .env.example menjadi .env:
+   linux
    ```
    cp .env.example .env
    ```
+    windows
+   ```
+   copy .env.example .env
+   ```
 
-6. Generate application key:
+7. Generate application key:
    ```
    php artisan key:generate
    ```
