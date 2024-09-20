@@ -6,10 +6,10 @@ Modul ini bertujuan untuk memberikan pemahaman dan pengalaman praktis dalam mana
 ## Alat yang Dibutuhkan
 1. Git
 2. GitHub account
-    Configure Git in your Workspace
-    In your shell, add your user name: git config --global user.name "your_username"
-    Add your email address: git config --global user.email "your_email_address@example.com"
-    To check the configuration, run: git config --global --list
+   Configure Git in your Workspace
+   In your shell, add your user name: git config --global user.name "your_username"
+   Add your email address: git config --global user.email "your_email_address@example.com"
+   To check the configuration, run: git config --global --list
 4. Laravel
 5. Composer
 6. Text editor atau IDE (contoh: Visual Studio Code)
