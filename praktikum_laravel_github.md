@@ -6,10 +6,6 @@ Modul ini bertujuan untuk memberikan pemahaman dan pengalaman praktis dalam mana
 ## Alat yang Dibutuhkan
 1. Git
 2. GitHub account
-   Configure Git in your Workspace
-   In your shell, add your user name: git config --global user.name "your_username"
-   Add your email address: git config --global user.email "your_email_address@example.com"
-   To check the configuration, run: git config --global --list
 4. Laravel
 5. Composer
 6. Text editor atau IDE (contoh: Visual Studio Code)
@@ -17,6 +13,16 @@ Modul ini bertujuan untuk memberikan pemahaman dan pengalaman praktis dalam mana
 ## Langkah-langkah Praktikum
 
 ### 1. Persiapan Proyek dan Repository
+   - Pastikan Konfigurasikan Git di Terminal Anda telah sesuai
+   ```
+   git config –global credential.helper manager-core
+   git config --global user.name "your_username"
+   git config --global user.email "your_email_address@example.com"
+   ```
+   - Untuk memeriksa konfigurasi, run:
+   ```
+     git config --global --list
+   ```
 
 #### Anggota 1 (Project Manager):
 1. Buat repository baru di GitHub dengan nama "laravel-web-project".
@@ -63,11 +69,11 @@ Modul ini bertujuan untuk memberikan pemahaman dan pengalaman praktis dalam mana
    ```
    
 7. Tambahkan anggota tim ke repository GitHub:
-	Buka halaman repository di GitHub
-	Klik "Settings" > "Manage access"
-	Klik "Invite a collaborator"
-	Masukkan username atau email anggota tim
-	Pilih role yang sesuai (biasanya "Write")
+   - Buka halaman repository di GitHub
+   - Klik "Settings" > "Manage access"
+   - Klik "Invite a collaborator"
+   - Masukkan username atau email anggota tim
+   - Pilih role yang sesuai (biasanya "Write")
 	
 
 #### Anggota 2 dan 3:
@@ -95,8 +101,8 @@ Modul ini bertujuan untuk memberikan pemahaman dan pengalaman praktis dalam mana
    composer install
    ```
 
-5. Salin file .env.example menjadi .env:
-   linux
+5. Salin file .env.example menjadi .env: 
+  linux
    ```
    cp .env.example .env
    ```
