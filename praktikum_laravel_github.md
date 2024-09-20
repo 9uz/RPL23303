@@ -101,12 +101,12 @@ Modul ini bertujuan untuk memberikan pemahaman dan pengalaman praktis dalam mana
    composer install
    ```
 
-5. Salin file .env.example menjadi .env: 
-  linux
+5. Salin file .env.example menjadi .env:
+   ##linux
    ```
    cp .env.example .env
    ```
-    windows
+    ##windows
    ```
    copy .env.example .env
    ```
