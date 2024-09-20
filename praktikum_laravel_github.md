@@ -20,7 +20,7 @@ Modul ini bertujuan untuk memberikan pemahaman dan pengalaman praktis dalam mana
    - Klik tombol "+" di pojok kanan atas, pilih "New repository"
    - Beri nama repository "laravel-web-project" (sesuaikan dengan proyek anda)
    - Pilih "Public" untuk visibilitas
-   - Centang "Add a README file"
+   - Jangan Centang "Add a README file"
    - Klik "Create repository"
 
 2. Clone repository ke lokal:
