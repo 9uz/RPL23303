@@ -57,6 +57,14 @@ Modul ini bertujuan untuk memberikan pemahaman dan pengalaman praktis dalam mana
    git checkout -b development
    git push origin development
    ```
+   
+7. Tambahkan anggota tim ke repository GitHub:
+	Buka halaman repository di GitHub
+	Klik "Settings" > "Manage access"
+	Klik "Invite a collaborator"
+	Masukkan username atau email anggota tim
+	Pilih role yang sesuai (biasanya "Write")
+	
 
 #### Anggota 2 dan 3:
 1. Clone repository:
