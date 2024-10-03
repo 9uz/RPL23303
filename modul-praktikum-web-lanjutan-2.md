@@ -1,0 +1,363 @@
+# Modul Praktikum Web Lanjutan 2: Database dan Fitur Laravel Lanjutan
+
+## Capaian Pembelajaran
+Setelah menyelesaikan praktikum ini, mahasiswa diharapkan mampu:
+1. Memahami dan mengimplementasikan fitur-fitur database lanjutan di Laravel
+2. Menguasai Eloquent ORM untuk manajemen data yang kompleks
+3. Mengoptimalkan query database menggunakan Query Builder
+4. Menerapkan validasi data yang kuat dan fleksibel
+5. Menggunakan Seeding dan Factory untuk manajemen data pengujian
+6. Mengimplementasikan relasi data kompleks dan teknik pengambilan data efisien
+7. Menerapkan database transaction untuk integritas data
+8. Mengamankan aplikasi dari ancaman keamanan database
+
+## Durasi
+8 jam (dapat dibagi menjadi dua sesi 4 jam)
+
+## Prasyarat
+- Telah menyelesaikan "Modul Praktikum Web Lanjutan: Routing Kompleks dan MVC Lanjutan"
+- Pemahaman dasar tentang Laravel dan database relasional
+- Familiar dengan konsep OOP dalam PHP
+
+## Outline Materi
+1. Database Migration (45 menit)
+2. Eloquent ORM (60 menit)
+3. Query Builder (45 menit)
+4. Validasi Data (45 menit)
+5. Seeding dan Factory (45 menit)
+6. Relasi dan Pengambilan Data (60 menit)
+7. Database Transaction (45 menit)
+8. Keamanan Database (45 menit)
+
+## Rincian Materi dan Instruksi
+
+### 1. Database Migration (45 menit)
+
+#### a. Pengertian dan Pentingnya Migration
+- Jelaskan konsep migration sebagai version control untuk database
+- Diskusikan manfaat menggunakan migration dalam pengembangan tim
+
+#### b. Membuat dan Mengelola Migration
+Instruksi:
+1. Buat migration untuk tabel 'categories':
+   ```
+   php artisan make:migration create_categories_table
+   ```
+2. Edit file migration yang baru dibuat di `database/migrations/`:
+   ```php
+   public function up()
+   {
+       Schema::create('categories', function (Blueprint $table) {
+           $table->id();
+           $table->string('name');
+           $table->string('slug')->unique();
+           $table->text('description')->nullable();
+           $table->timestamps();
+       });
+   }
+   ```
+3. Jalankan migration:
+   ```
+   php artisan migrate
+   ```
+
+#### c. Rollback dan Reset Migration
+Instruksi:
+1. Rollback migration terakhir:
+   ```
+   php artisan migrate:rollback
+   ```
+2. Reset semua migration dan jalankan ulang:
+   ```
+   php artisan migrate:refresh
+   ```
+
+### 2. Eloquent ORM (60 menit)
+
+#### a. Dasar-Dasar Eloquent: Model, Table, dan Relationships
+- Jelaskan konsep Model dalam Eloquent
+- Demonstrasikan konvensi penamaan tabel
+
+#### b. Membuat Model dan Menghubungkan ke Tabel
+Instruksi:
+1. Buat model Category:
+   ```
+   php artisan make:model Category
+   ```
+2. Edit `app/Models/Category.php`:
+   ```php
+   class Category extends Model
+   {
+       protected $fillable = ['name', 'slug', 'description'];
+   }
+   ```
+
+#### c. Hubungan Lanjutan: One-to-Many, Many-to-Many, Polymorphic
+Instruksi:
+1. Buat relasi one-to-many antara Category dan Task:
+   Tambahkan di `app/Models/Category.php`:
+   ```php
+   public function tasks()
+   {
+       return $this->hasMany(Task::class);
+   }
+   ```
+   Tambahkan di `app/Models/Task.php`:
+   ```php
+   public function category()
+   {
+       return $this->belongsTo(Category::class);
+   }
+   ```
+2. Buat migration untuk menambahkan `category_id` ke tabel tasks:
+   ```
+   php artisan make:migration add_category_id_to_tasks_table
+   ```
+3. Edit file migration tersebut:
+   ```php
+   public function up()
+   {
+       Schema::table('tasks', function (Blueprint $table) {
+           $table->foreignId('category_id')->nullable()->constrained();
+       });
+   }
+   ```
+
+### 3. Query Builder (45 menit)
+
+#### a. Penggunaan Query Builder di Laravel
+Instruksi:
+1. Gunakan Query Builder untuk mengambil semua task dengan kategori tertentu:
+   ```php
+   $tasks = DB::table('tasks')
+              ->join('categories', 'tasks.category_id', '=', 'categories.id')
+              ->where('categories.name', 'Work')
+              ->select('tasks.*', 'categories.name as category_name')
+              ->get();
+   ```
+
+#### b. Query Lanjutan: Aggregates, Joins, Subqueries
+Instruksi:
+1. Hitung jumlah task per kategori:
+   ```php
+   $taskCounts = DB::table('tasks')
+                   ->rightJoin('categories', 'tasks.category_id', '=', 'categories.id')
+                   ->select('categories.name', DB::raw('COUNT(tasks.id) as task_count'))
+                   ->groupBy('categories.name')
+                   ->get();
+   ```
+
+#### c. Optimasi Query Menggunakan Query Builder
+- Diskusikan penggunaan indeks dan explain untuk optimasi query
+
+### 4. Validasi Data (45 menit)
+
+#### a. Validasi Input Menggunakan Form Request
+Instruksi:
+1. Buat Form Request untuk validasi Task:
+   ```
+   php artisan make:request StoreTaskRequest
+   ```
+2. Edit `app/Http/Requests/StoreTaskRequest.php`:
+   ```php
+   public function rules()
+   {
+       return [
+           'title' => 'required|max:255',
+           'description' => 'nullable',
+           'due_date' => 'required|date',
+           'category_id' => 'required|exists:categories,id',
+       ];
+   }
+   ```
+
+#### b. Pesan Error Kustom dan Penanganan Validasi
+Instruksi:
+1. Tambahkan pesan kustom di `StoreTaskRequest`:
+   ```php
+   public function messages()
+   {
+       return [
+           'title.required' => 'Judul task harus diisi.',
+           'due_date.required' => 'Tanggal jatuh tempo harus diisi.',
+           'category_id.exists' => 'Kategori yang dipilih tidak valid.',
+       ];
+   }
+   ```
+
+#### c. Validasi Lanjutan Menggunakan Rule Kustom
+Instruksi:
+1. Buat Rule kustom untuk memvalidasi slug:
+   ```
+   php artisan make:rule UniqueSlug
+   ```
+2. Edit `app/Rules/UniqueSlug.php`:
+   ```php
+   public function passes($attribute, $value)
+   {
+       return !Category::where('slug', $value)->exists();
+   }
+   ```
+
+### 5. Seeding dan Factory (45 menit)
+
+#### a. Pengertian dan Manfaat Database Seeding
+- Jelaskan konsep seeding untuk pengisian data awal atau data testing
+
+#### b. Membuat Factory untuk Generasi Data Dummy
+Instruksi:
+1. Buat factory untuk Task:
+   ```
+   php artisan make:factory TaskFactory
+   ```
+2. Edit `database/factories/TaskFactory.php`:
+   ```php
+   public function definition()
+   {
+       return [
+           'title' => $this->faker->sentence,
+           'description' => $this->faker->paragraph,
+           'status' => $this->faker->randomElement(['pending', 'in_progress', 'completed']),
+           'due_date' => $this->faker->dateTimeBetween('now', '+1 month'),
+           'category_id' => Category::factory(),
+       ];
+   }
+   ```
+
+#### c. Menggunakan Seeder untuk Pengisian Data Awal
+Instruksi:
+1. Buat seeder untuk Category dan Task:
+   ```
+   php artisan make:seeder CategorySeeder
+   php artisan make:seeder TaskSeeder
+   ```
+2. Edit `database/seeders/CategorySeeder.php`:
+   ```php
+   public function run()
+   {
+       Category::factory(5)->create();
+   }
+   ```
+3. Edit `database/seeders/TaskSeeder.php`:
+   ```php
+   public function run()
+   {
+       Task::factory(20)->create();
+   }
+   ```
+4. Update `database/seeders/DatabaseSeeder.php`:
+   ```php
+   public function run()
+   {
+       $this->call([
+           CategorySeeder::class,
+           TaskSeeder::class,
+       ]);
+   }
+   ```
+5. Jalankan seeder:
+   ```
+   php artisan db:seed
+   ```
+
+### 6. Relasi dan Pengambilan Data (60 menit)
+
+#### a. Menggunakan Eager Loading dan Lazy Loading
+Instruksi:
+1. Implementasi eager loading di TaskController:
+   ```php
+   public function index()
+   {
+       $tasks = Task::with('category', 'user')->get();
+       return view('tasks.index', compact('tasks'));
+   }
+   ```
+
+#### b. Memahami Lazy Eager Loading
+Instruksi:
+1. Implementasi lazy eager loading:
+   ```php
+   $task = Task::find(1);
+   $task->load('category', 'user');
+   ```
+
+#### c. Penggunaan Scopes untuk Query yang Reusable
+Instruksi:
+1. Tambahkan scope di model Task:
+   ```php
+   public function scopeOverdue($query)
+   {
+       return $query->where('due_date', '<', now())->where('status', '!=', 'completed');
+   }
+   ```
+2. Gunakan scope:
+   ```php
+   $overdueTasks = Task::overdue()->get();
+   ```
+
+### 7. Database Transaction (45 menit)
+
+#### a. Konsep Transaksi di Laravel
+- Jelaskan pentingnya transaksi untuk menjaga integritas data
+
+#### b. Menggunakan Transaction untuk Keamanan Data
+Instruksi:
+1. Implementasi transaksi di TaskController:
+   ```php
+   public function store(StoreTaskRequest $request)
+   {
+       DB::transaction(function () use ($request) {
+           $task = Task::create($request->validated());
+           // Lakukan operasi lain yang terkait
+       });
+   }
+   ```
+
+#### c. Rollback dan Commit dalam Transaksi
+- Demonstrasikan penggunaan manual transaction dengan `DB::beginTransaction()`, `DB::commit()`, dan `DB::rollBack()`
+
+### 8. Keamanan Database (45 menit)
+
+#### a. Menghindari SQL Injection di Laravel
+- Jelaskan bagaimana Eloquent dan Query Builder mencegah SQL Injection
+
+#### b. Penggunaan Parameter Binding
+Instruksi:
+1. Contoh penggunaan parameter binding:
+   ```php
+   $results = DB::select('SELECT * FROM users WHERE id = ?', [1]);
+   ```
+
+#### c. Teknik Keamanan Lainnya untuk Database
+- Diskusikan penggunaan prepared statements
+- Jelaskan pentingnya pembatasan akses database
+
+#### d. Caching Database
+Instruksi:
+1. Implementasi caching query:
+   ```php
+   $tasks = Cache::remember('all_tasks', 3600, function () {
+       return Task::all();
+   });
+   ```
+
+## Tugas
+1. Buat sebuah fitur untuk melacak perubahan status task (task history) menggunakan polymorphic relationship.
+2. Implementasikan soft deletes pada model Task dan Category.
+3. Buat sebuah artisan command untuk membersihkan task yang sudah selesai dan lebih lama dari 30 hari.
+4. Implementasikan rate limiting pada API endpoints untuk mencegah abuse.
+
+## Referensi
+- [Dokumentasi Resmi Laravel - Database](https://laravel.com/docs/database)
+- [Laracasts - Laravel Database Mastery](https://laracasts.com/series/laravel-database-mastery)
+- "Mastering Laravel" oleh Christopher John Pecoraro
+- "Laravel Design Patterns and Best Practices" oleh Arda Kılıçdağı & H. İbrahim YILMAZ
+
+## Penilaian
+- Implementasi Database Migration dan Seeding: 15%
+- Penggunaan Eloquent ORM dan Query Builder: 20%
+- Implementasi Validasi Data: 15%
+- Penggunaan Relasi dan Optimasi Query: 20%
+- Implementasi Database Transaction: 15%
+- Penerapan Keamanan Database: 15%
+
