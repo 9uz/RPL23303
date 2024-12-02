@@ -1,4 +1,4 @@
-1. Sistem Autentikasi Pengguna (Login, Registrasi, dan Verifikasi) 
+1. Sistem Autentikasi Pengguna (Login, Registrasi, dan Verifikasi)
 Prosentase Nilai: 15%
 Fitur:
  - Pengguna dapat mendaftar akun dengan menggunakan email dan password.
@@ -18,12 +18,12 @@ Fitur:
 4. API Endpoints untuk Integrasi dengan Frontend
 Prosentase Nilai: 20%
     Fitur:
-        RESTful API untuk mengakses data, dengan minimal tiga endpoint utama (misalnya, GET, POST, PUT/PATCH, DELETE) untuk mengelola entitas utama (misalnya, produk, pengguna, artikel).
-        Gunakan API Resources untuk merender data dalam format JSON yang terstruktur dan konsisten.
-        Endpoint Pagination untuk menampilkan daftar data (misalnya, produk atau artikel dalam jumlah besar).
-        Implementasikan fitur filtering dan sorting untuk menampilkan data sesuai kriteria yang diminta.
-        Autentikasi API: Penggunaan token berbasis JWT atau OAuth untuk mengamankan endpoint API.
-    Penggunaan Laravel: Gunakan Laravel Passport, Laravel Sanctum, atau Laravel Fortify untuk autentikasi API dan pengelolaan token. Gunakan API Resource untuk format output data.
+- RESTful API untuk mengakses data, dengan minimal tiga endpoint utama (misalnya, GET, POST, PUT/PATCH, DELETE) untuk mengelola entitas utama (misalnya, produk, pengguna, artikel).
+- Gunakan API Resources untuk merender data dalam format JSON yang terstruktur dan konsisten.
+- Endpoint Pagination untuk menampilkan daftar data (misalnya, produk atau artikel dalam jumlah besar).
+- Implementasikan fitur filtering dan sorting untuk menampilkan data sesuai kriteria yang diminta.
+- Autentikasi API: Penggunaan token berbasis JWT atau OAuth untuk mengamankan endpoint API.
+- Penggunaan Laravel: Gunakan RBAC untuk autentikasi API dan pengelolaan token. Gunakan API Resource untuk format output data.
 
 5. Validasi Input dan Keamanan
 Prosentase Nilai: 10%
