@@ -1,38 +1,38 @@
 1. Sistem Autentikasi Pengguna (Login, Registrasi, dan Verifikasi)
 Prosentase Nilai: 15%
 Fitur:
- - Pengguna dapat mendaftar akun dengan menggunakan email dan password.
- - Pengguna dapat login menggunakan email dan password yang sudah terdaftar.
- - Reset password: Pengguna dapat mengatur ulang password melalui email verifikasi.
- - Autentikasi dua faktor (opsional): Menambahkan lapisan keamanan dengan verifikasi melalui kode yang dikirimkan ke email atau aplikasi otentikasi.
- - Verifikasi email: Pengguna yang baru mendaftar harus memverifikasi email mereka sebelum dapat menggunakan aplikasi.
-Penggunaan Laravel: Gunakan Laravel Breeze, Laravel Jetstream, atau Laravel Fortify untuk menangani autentikasi pengguna secara standar.
+	 - Pengguna dapat mendaftar akun dengan menggunakan email dan password.
+	 - Pengguna dapat login menggunakan email dan password yang sudah terdaftar.
+	 - Reset password: Pengguna dapat mengatur ulang password melalui email verifikasi.
+	 - Autentikasi dua faktor (opsional): Menambahkan lapisan keamanan dengan verifikasi melalui kode yang dikirimkan ke email atau aplikasi otentikasi.
+	 - Verifikasi email: Pengguna yang baru mendaftar harus memverifikasi email mereka sebelum dapat menggunakan aplikasi.
+	 - Penggunaan Laravel: Gunakan Laravel Breeze, Laravel Jetstream, atau Laravel Fortify untuk menangani autentikasi pengguna secara standar.
 
 2. CRUD (Create, Read, Update, Delete) untuk Data Utama
 Prosentase Nilai: 20%
 Fitur:
-- Pengguna dapat menambahkan, melihat, memperbarui, dan menghapus data dari sistem (misalnya, data pengguna, produk, artikel, atau entitas lain sesuai dengan konteks proyek).
-- Halaman admin untuk mengelola data (opsional): Admin dapat melakukan CRUD terhadap entitas-entitas tertentu (misalnya, manajemen pengguna, manajemen konten).
-- Penggunaan Laravel: Implementasikan menggunakan Eloquent ORM, Controllers, dan Routes untuk mengelola operasi CRUD. Gunakan Form Request Validation untuk memastikan data valid.
+	- Pengguna dapat menambahkan, melihat, memperbarui, dan menghapus data dari sistem (misalnya, data pengguna, produk, artikel, atau entitas lain sesuai dengan konteks proyek).
+	- Halaman admin untuk mengelola data (opsional): Admin dapat melakukan CRUD terhadap entitas-entitas tertentu (misalnya, manajemen pengguna, manajemen konten).
+	- Penggunaan Laravel: Implementasikan menggunakan Eloquent ORM, Controllers, dan Routes untuk mengelola operasi CRUD. Gunakan Form Request Validation untuk memastikan data valid.
 
 3. API Endpoints untuk Integrasi dengan Frontend
 Prosentase Nilai: 20%
-    Fitur:
-- RESTful API untuk mengakses data, dengan minimal tiga endpoint utama (misalnya, GET, POST, PUT/PATCH, DELETE) untuk mengelola entitas utama (misalnya, produk, pengguna, artikel).
-- Gunakan API Resources untuk merender data dalam format JSON yang terstruktur dan konsisten.
-- Endpoint Pagination untuk menampilkan daftar data (misalnya, produk atau artikel dalam jumlah besar).
-- Implementasikan fitur filtering dan sorting untuk menampilkan data sesuai kriteria yang diminta.
-- Autentikasi API: Penggunaan token berbasis JWT atau OAuth untuk mengamankan endpoint API.
-- Penggunaan Laravel: Gunakan RBAC untuk autentikasi API dan pengelolaan token. Gunakan API Resource untuk format output data.
+Fitur:
+	- RESTful API untuk mengakses data, dengan minimal tiga endpoint utama (misalnya, GET, POST, PUT/PATCH, DELETE) untuk mengelola entitas utama (misalnya, produk, pengguna, artikel).
+	- Gunakan API Resources untuk merender data dalam format JSON yang terstruktur dan konsisten.
+	- Endpoint Pagination untuk menampilkan daftar data (misalnya, produk atau artikel dalam jumlah besar).
+	- Implementasikan fitur filtering dan sorting untuk menampilkan data sesuai kriteria yang diminta.
+	- Autentikasi API: Penggunaan token berbasis JWT atau OAuth untuk mengamankan endpoint API.
+	- Penggunaan Laravel: Gunakan RBAC untuk autentikasi API dan pengelolaan token. Gunakan API Resource untuk format output data.
 
 4. Validasi Input dan Keamanan
 Prosentase Nilai: 10%
 Fitur:
-- Validasi input untuk formulir pengguna, memastikan bahwa semua data yang dikirim valid (misalnya, validasi email, password, nomor telepon).
-- Proteksi CSRF: Gunakan token CSRF untuk melindungi aplikasi dari serangan Cross-Site Request Forgery.
-- Keamanan Password: Gunakan bcrypt atau hash untuk meng-hash password dan menghindari penyimpanan password secara plaintext.
-- Proteksi XSS dan SQL Injection: Pastikan input yang diberikan oleh pengguna divalidasi dan disaring untuk menghindari serangan.
-- Penggunaan Laravel: Gunakan Form Request Validation, Laravel's built-in validation rules, dan fitur keamanan seperti middleware CSRF.
+	- Validasi input untuk formulir pengguna, memastikan bahwa semua data yang dikirim valid (misalnya, validasi email, password, nomor telepon).
+	- Proteksi CSRF: Gunakan token CSRF untuk melindungi aplikasi dari serangan Cross-Site Request Forgery.
+	- Keamanan Password: Gunakan bcrypt atau hash untuk meng-hash password dan menghindari penyimpanan password secara plaintext.
+	- Proteksi XSS dan SQL Injection: Pastikan input yang diberikan oleh pengguna divalidasi dan disaring untuk menghindari serangan.
+	- Penggunaan Laravel: Gunakan Form Request Validation, Laravel's built-in validation rules, dan fitur keamanan seperti middleware CSRF.
 
 5. Sistem Manajemen Hak Akses (RBAC - Role-Based Access Control)
 Prosentase Nilai: 15%
@@ -96,3 +96,4 @@ Fitur	Prosentase Nilai
 10. Pengujian dan Penjaminan Kualitas	10%
 11. Antarmuka Pengguna (UI/UX) yang Responsif	5%
 12. Deployment dan Pengelolaan Proyek - Fitur Laravel yang Lanjut 10%
+
