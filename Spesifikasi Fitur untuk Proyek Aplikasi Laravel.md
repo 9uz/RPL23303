@@ -9,7 +9,7 @@ Fitur:
    	6.  Penggunaan Laravel: Gunakan Laravel Breeze, Laravel Jetstream, atau Laravel Fortify untuk menangani autentikasi pengguna secara standar.
 
 2. CRUD (Create, Read, Update, Delete) untuk Data Utama
-Prosentase Nilai: 20%
+Prosentase Nilai: 15%
 Fitur:
 	1. Pengguna dapat menambahkan, melihat, memperbarui, dan menghapus data dari sistem (misalnya, data pengguna, produk, artikel, atau entitas lain sesuai dengan konteks proyek).
  	2. Halaman admin untuk mengelola data (opsional): Admin dapat melakukan CRUD terhadap entitas-entitas tertentu (misalnya, manajemen pengguna, manajemen konten).
@@ -35,7 +35,7 @@ Fitur:
  	5. Penggunaan Laravel: Gunakan Form Request Validation, Laravel's built-in validation rules, dan fitur keamanan seperti middleware CSRF.
 
 5. Sistem Manajemen Hak Akses (RBAC - Role-Based Access Control)
-Prosentase Nilai: 15%
+Prosentase Nilai: 10%
     Fitur:
    1. Admin: Akses penuh ke semua fitur dan data.
    2. Pengguna Biasa: Akses terbatas pada data pribadi mereka (misalnya, melihat profil dan mengedit data mereka sendiri).
@@ -43,7 +43,7 @@ Prosentase Nilai: 15%
    4. Penggunaan Laravel: Gunakan Laravel Policies dan Gates untuk mengelola akses berdasarkan peran dan izin pengguna.
 
 6. Sistem Pengelolaan Data (Soft Delete dan Archiving)
-Prosentase Nilai: 10%
+Prosentase Nilai: 5%
     Fitur:
    1. Aplikasi harus menyediakan:  fitur yang diminta dalam deskripsi proyek atau dokumen persyaratan fungsional.
    2. Soft Delete: Pengguna atau admin dapat menghapus data, tetapi data tersebut masih bisa dipulihkan (misalnya, menggunakan Laravel’s SoftDeletes).
@@ -58,7 +58,7 @@ Prosentase Nilai: 5%
    3. Penggunaan Laravel: Gunakan DatabaseSeeder dan Factory untuk membuat data dummy. Pastikan seeding berfungsi dengan baik di database pengembangan.
 
 8. Pengujian dan Penjaminan Kualitas
-Prosentase Nilai: 10%
+Prosentase Nilai: 5%
     Fitur:
    1. Tulis pengujian unit untuk memastikan fungsi aplikasi bekerja sesuai harapan (misalnya, pengujian model, controller, atau validasi).
    2. Pengujian fungsional untuk memverifikasi bahwa API dan fitur utama berjalan dengan baik.
@@ -87,13 +87,13 @@ Prosentase Nilai: 10%
 
 Fitur	Prosentase Nilai
 1. Sistem Autentikasi Pengguna (Login, Registrasi, dan Verifikasi)	15%
-2. CRUD (Create, Read, Update, Delete) untuk Data Utama	20%
-4. API Endpoints untuk Integrasi dengan Frontend	20%
-5. Validasi Input dan Keamanan	10%
-6. Sistem Manajemen Hak Akses (RBAC - Role-Based Access Control)	15%
-7. Sistem Pengelolaan Data (Soft Delete dan Archiving)	10%
-9. Seeding dan Data Factory untuk Pengujian	5%
-10. Pengujian dan Penjaminan Kualitas	10%
-11. Antarmuka Pengguna (UI/UX) yang Responsif	5%
-12. Deployment dan Pengelolaan Proyek - Fitur Laravel yang Lanjut 10%
+2. CRUD (Create, Read, Update, Delete) untuk Data Utama	15%
+3. API Endpoints untuk Integrasi dengan Frontend	20%
+4. Validasi Input dan Keamanan	10%
+5. Sistem Manajemen Hak Akses (RBAC - Role-Based Access Control)	10%
+6. Sistem Pengelolaan Data (Soft Delete dan Archiving)	5%
+7. Seeding dan Data Factory untuk Pengujian	5%
+8. Pengujian dan Penjaminan Kualitas	5%
+9. Antarmuka Pengguna (UI/UX) yang Responsif	5%
+10. Deployment dan Pengelolaan Proyek - Fitur Laravel yang Lanjut 10%
 
